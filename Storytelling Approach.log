@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.26)  2 AUG 2019 21:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7000 64-bit) (preloaded format=pdflatex 2019.3.26)  5 AUG 2019 03:14
 entering extended mode
 **"./Storytelling Approach.tex"
 ("Storytelling Approach.tex"
@@ -254,7 +254,56 @@ File: listings.cfg 2019/02/27 1.8b listings configuration
 ))
 Package: listings 2019/02/27 1.8b (Carsten Heinz)
 
-No file "Storytelling Approach".aux.
+("Storytelling Approach.aux"
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
 \openout1 = `"Storytelling Approach.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
@@ -269,6 +318,7 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
 LaTeX Font Info:    ... okay on input line 13.
+
 -- Lines per column: 56 (exact).
 ("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -338,29 +388,29 @@ LaTeX Warning: Command \textellipsis invalid in math mode on input line 45.
 [1{C:/Users/Raunak Sarbajna/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}
 
 
-] [2]
-Underfull \hbox (badness 10000) in paragraph at lines 155--156
+]
+Underfull \hbox (badness 10000) in paragraph at lines 114--115
 []\OT1/ptm/m/n/8 \GRACE Tel-lus Data," GRACE Tel-lus. [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 156--157
+Underfull \hbox (badness 10000) in paragraph at lines 115--116
 \OT1/ptm/m/n/8 https://directory.eoportal.org/web/eoportal/satellite-missions/s
 /saral.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 []\OT1/ptm/m/n/8 \Shapefiles of drought in-ten-sity and im-pact for the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 \OT1/ptm/m/n/8 North Amer-i-can Drought Por-tal." [On-line]. Avail-able:
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 160--161
+Underfull \hbox (badness 10000) in paragraph at lines 119--120
 \OT1/ptm/m/n/8 https://www1.ncdc.noaa.gov/pub/data/nidis/shapefiles/. [Ac-cesse
 d:
  []
@@ -376,19 +426,17 @@ Before submitting the final camera ready copy, remember to:
  uses only Type 1 fonts and that every step in the generation
  process uses the appropriate paper size.
 
-[3
+[2] ("Storytelling Approach.aux")
 
-] ("Storytelling Approach.aux")
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 4475 strings out of 492945
- 66333 string characters out of 3135481
- 146839 words of memory out of 3000000
+ 4476 strings out of 492945
+ 66413 string characters out of 3135481
+ 148917 words of memory out of 3000000
  8337 multiletter control sequences out of 15000+200000
- 32471 words of font info for 64 fonts, out of 3000000 for 9000
+ 31364 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,7n,32p,478b,240s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<C:/Program Files/Mi
@@ -401,12 +449,11 @@ m/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr5.pf
 b><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Prog
 ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program File
 s/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Program Files/MiKTeX 
-2.9/fonts/type1/urw/times/utmb8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/u
-rw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/urw/times/utmri8a.
-pfb>
-Output written on "Storytelling Approach.pdf" (3 pages, 153863 bytes).
+2.9/fonts/type1/urw/times/utmr8a.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/u
+rw/times/utmri8a.pfb>
+Output written on "Storytelling Approach.pdf" (2 pages, 137844 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 58 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

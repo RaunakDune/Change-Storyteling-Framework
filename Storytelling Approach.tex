@@ -11,7 +11,7 @@
 \usepackage{listings}
 
 \begin{document}
-\title{Approach to Automated Storytelling Using Cluster Polygons}
+\title{Approach to Automated Storytelling Using Geospatial-Temporal Polygons}
 \author{\IEEEauthorblockN{Raunak Sarbajna}
 \IEEEauthorblockA{Department of Computer Science\\
 Lamar University\\
@@ -37,16 +37,13 @@ Email: sujing.wang@lamar.edu}}
 
 \subsection{Change Analysis Predicates}
 
-We begin by creating our change predicates[6]. There are three change functions that are necessary for complete change predicates, we define them as follows:
+Our change predicates are derived from the Aconcagua Framework [6]. We consider $c$ is a spatial cluster polygon from the batch timed $t_i$ and $m$ is another spatial cluster polygon from a batch timed $t_{i+x}$, with $x$ indicating a time increase. We denote cluster intersection as $\cap$ and union as $\cup$. $Area(x)$ denotes the area covered by the polygon $x$, upto a desired level of accuracy.
 
 \begin{itemize}
 	\item $Agreement (c, m) = (area(c\cap m))/(area(c\cup m))$
 	\item $Containment (c, m) = (area(c\cap m))/(area(m))$
 	\item $Overlap(s,p)= area(s\cap (p_1\cap …\cap p_m))/area(s)$
-
 \end{itemize}
-
-Here, $c$ is a spatial cluster polygon from the batch timed $t_i$ and $m$ is another spatial cluster polygon from a batch timed $t_{i+x}$, with $x$ indicating a time increase. We denote cluster intersection as $\cap$ and union as $\cup$. $Area(x)$ denotes the area covered by the polygon $x$, upto a desired level of accuracy.
 
 The change function $Agreement(c, m)$ is a measure of similarity. $Containment(c, m)$ measures whether individual polygons coincide. To measure concurrence between one polygon and a set of polygons, we use the $Overlap(s,p)$ functions. Here $p_1,...,p_m$ are spatial clusters from a batch $b$, and $s$ is a cluster from a different batch $b'$. Other basic functions include $Centroid(x)$, which indicates the Centorid of a polygon as defined as:
 
@@ -54,7 +51,9 @@ $C_x =\frac{1}{6A} \sum_{i=0}^{N-1}(x_i+x_{i+1})(x_iy_{i+1}-x_{i+1}y_i)$
 
 $C_y =\frac{1}{6A} \sum_{i=0}^{N-1}(y_i+y_{i+1})(x_iy_{i+1}-x_{i+1}y_i)$
 
-where $x_N=x_0$ and A = the area of the polygon. We also use a simple Manhattan distance function $Distance(c, m)$ which is tuned to the required georeferenced accuracy. We use all these functions to defined these seven change predicates:
+where $x_N=x_0$ and A = the area of the polygon. We also use a simple Manhattan distance function $Distance(c, m)$ which is tuned to the required georeferenced accuracy.
+
+We use all these functions to defined these seven change predicates:
 
 \begin{enumerate}
 	\item $S-Continuing (c,m)  \leftrightarrow  Agreement (c,m) \geq 0.8$
@@ -64,49 +63,9 @@ where $x_N=x_0$ and A = the area of the polygon. We also use a simple Manhattan 
 	\item $Disappearing(c) \leftrightarrow \exists i (belong-to(c,i) $
 	\item $Novel (c) \leftrightarrow  \exists i (belong-to(c,i) and (i=1 or not(B-Continuing(c,i-1)) $
 	\item $Shifting \leftrightarrow \frac{\sum_{i=1}^{N}Distance (Centroid(c), Centroid(m))}{N}$
-
-Implementations of these change predicates can be found in the Section IV.
 \end{enumerate}
 
-
-
-\subsection{Polygon Generation from Point Data Sources}
-We improve upon the change analysis framework called Aconcagua [6]. The system expects an input of emotion polygons annotated with emotion assessment scores, with +1 representing a very high positive emotion and -1 representing a very high negative emotion. While this method does lead to inconsistencies in locations due to georeferencing inaccuracies, we find that the 8 ~ 10m precision [8] works well within city limits.
-
-There are several ways of using the numerous point data we have obtained from this step into an actual polygonal map: 
-
-\begin{enumerate}
-
-\item Creating closed contour lines for contour lines that lie on the boundary of the observation area.
-\item Creating a convex hull from points with similar scores.
-\end{enumerate}
-
-We elaborate on creating convex hulls in the following section.
-
-\subsection{Change Analysis for Polygonal Map Data Sources}
-
-
-Our approach uses three primary set operations: union, intersection and erase. We calculate the area of each individual polygon within each map layer. We then execute a union operation and calculate area. The union layer now contains the original areas of both layers and the areas of the overlapping polygons - we now need to query them properly to prepare for calculating the change percentage and tabulating intersection.
-
-To outline the polygon, we examine several different methods:
-\begin{enumerate}
-	\item We find features common to either of the layers but not both, essentially performing a symmetrical difference
-	\item We erase the larger of the polygons from the smaller, thus retaining only the growth, and do vice-verse for shrinking
-	\item We perform simple intersection and then invert selection to get changed regions. 
-\end{enumerate}
-
-Our approach then combined several techniques:
-\begin{enumerate}
-	\item \textbf{Data Pre Processing} This involves curation of datasets with obvious georeferencing errors. This would preferable be done by minimizing the root mean square error. We initially.
-	\item \textbf{Parametrization of polygons} Calculate shape and area parameters for each individual polygon with each map layer.s
-	\item \textbf{Analysis through Symmetrical Difference} Extract features common to either of the layers
-	\item \textbf{Polygon Union Computation} Union sequential layers to contain the original areas of both layers and the areas of overlapping polygons
-	\item \textbf{Polygon Erase Operation} Erase larger polygons from smaller (or vice-versa) for detection of growth/shrinking
-	\item \textbf{Polygon Intersection/Invert} Selecting and then labelling the changed regions
-\end{enumerate}
-
-
-\subsection{Storytelling Techniques for Geospatial Data}
+\subsection{Interestingness Functions}
 
 In order to tell a coherent spatio-temporal data story from the change analysis output, we propose using an interestingness function for this task.[11]
 
