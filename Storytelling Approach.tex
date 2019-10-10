@@ -67,57 +67,44 @@ We use all these functions to defined these seven change predicates:
 
 \subsection{Interestingness Functions}
 
-In order to tell a coherent spatio-temporal data story from the change analysis output, we propose using an interestingness function for this task.[11]
+In order to tell a coherent spatio-temporal data story from the change analysis output, we propose using an interestingness function for this task.[1]
 
-We choose a set of change polygons SCP. It not only contains those polygons but also their associated characteristics. For example, a SCP could contain a set of spatial clusters represented by polygons, their average drought score, total area of each polygon, centroid coordinates of each polygon and other summaries for each spatial cluster (polyogn). We define the function as:
+We choose an area of interest $A(x_1,y_1,x_2,y_2)$ which is a rectangle bounded by  coordinates $(x_1, y_1)$ and $(x_2, y_2)$. The length of the diagonal is $d$. We choose a set of polygons SCP, whose centroid $C_{x,y}$ lies within $A$.
+
+The Thinness ratio measure takes a maximum value of 1 for a circle. Objects of regular shape have a higher thinness ratio than similar irregular ones. We define the thinness ratio of a polygon as:
+
+$T = \frac{4\pi Area(SCP) }{Perimeter^2}$ 
+
+
+
+It not only contains those polygons but also their associated characteristics. For example, a SCP could contain a set of spatial clusters represented by polygons, their average drought score, total area of each polygon, centroid coordinates of each polygon and other summaries for each spatial cluster (polygon). We define the function as:
 \[f:SCP\ \rightarrow\ \left[0\right.,\left.\infty\right)\]
 
-We define a threshold $\omega$, which ensures that a narrative will only be generated an object $p \in SCP$ such that $f(p) \ge \omega$. Sample parameters for $\omega$ include  
+
+
+We define a threshold $\omega$, which ensures that a narrative will only be generated an object $p \in SCP$ such that $f(p) \ge \omega$. The parameters for $\omega$ are:
 
 \begin{itemize}
-\item $Max\left(\frac{area\left(Polygon\ P_i\right)}{\sum_{1}^{i}area\left(Polygon\ P_i\right)}\right)$
-\item $Max\left(Percentage\ Change\ in\ Polygon\right)$
-\item Largest shift in polygon centroids
+\item $\alpha = (Max\left(\frac{area\left(Polygon\ P_i\right)}{\sum_{1}^{i}area\left(Polygon\ P_i\right)}\right))$
+\item $\beta = (Max\left(Percentage\ Change\ in\ Polygon\right))$
+\item $\gamma = (Shifting \geq \frac{d}{2})$
+\item $\delta = (T \geq 0.3)$
 \end{itemize}
 
-The threshold parameters need to be finely tuned so as to not exclude those polygons who fall through exceptions. Once we have a suitable selection of polygons and chose a threshold value, we can create a summary narrative based on that. 
+The parameters $\beta$ and $\gamma$ are special cases. $\beta$ is to be used for those SCP whose primary change was growth/shrinking, henceforth referred to as $SCP_{ext}$. $\gamma$ is to be used for those SCP whose primary change was shifting, henceforth referred to as $SCP_{shift}$. The threshold parameters need to be finely tuned so as to not exclude those polygons who fall through exceptions. Once we have a suitable selection of polygons and chose a threshold value, we can create a summary narrative based on that.
+
+Thus, our Interestingness function $\omega$ is hence calculated as:
+
+$\omega_{ext} = 0.3\alpha + 0.4\beta + 0.4\delta$
+
+$\omega_{shift} = 0.3\alpha + 0.4\gamma + 0.4\delta$
 
 
 \newpage
 \begin{thebibliography}{12}
 
   
-\bibitem {1} J. Im and J. Jensen. 2005. A change detection model based on neighborhood correlation image analysis and decision tree classification. Remote Sensing of Environment 99, 3 (2005), 326–340. DOI:http://dx.doi.org/10.1016/j.rse.2005.09.008 
-\bibitem {2} Suming Jin, Limin Yang, Patrick Danielson, Collin Homer, Joyce Fry, and George Xian. 2013. A comprehensive change detection method for updating the National Land Cover Database to circa 2011. Remote Sensing of Environment 132 (May 2013), 159–175. DOI:http://dx.doi.org/10.1016/j.rse.2013.01.012 
-\bibitem {3} D. Lu, P. Mausel, E. Brondízio, and E. Moran. 2004. Change detection techniques. International Journal of Remote Sensing 25, 12 (June 2004), 2365–2401. DOI:http://dx.doi.org/10.1080/0143116031000139863 
-\bibitem {4} Merrill K. Ridd and Jiajun Liu. 1998. A Comparison of Four Algorithms for Change Detection in an Urban Environment. Remote Sensing of Environment 63, 2 (1998), 95–100. DOI:http://dx.doi.org/10.1016/s0034-4257(97)00112-0 
-\bibitem {5} S. Minu and Amba Shetty. 2015. A Comparative Study of Image Change Detection Algorithms in MATLAB. Aquatic Procedia 4 (March 2015), 1366–1373. DOI:http://dx.doi.org/10.1016/j.aqpro.2015.02.177 
-\bibitem {6} K. Elgarroussi, S. Wang, R. Banerjee, and C. F. Eick, “Aconcagua: A Novel Spatiotemporal Emotion Change Analysis Framework,” in Proceedings of the 2Nd ACM SIGSPATIAL International Workshop on AI for Geographic Knowledge Discovery, New York, NY, USA, 2018, pp. 54–61.
-\bibitem {7} R. Banerjee, K. Elgarroussi, S. Wang, A. Talari, Y. Zhang, and C. F. Eick, “K2: A Novel Data Analysis Framework to Understand US Emotions in Space and Time,” Int. J. Semantic Computing, vol. 13, no. 01, pp. 111–133, Mar. 2019.
-\bibitem {8} Geomenke, “How Accurate is the GPS on my Smart Phone? (Part 2),” Community Health Maps, 07-Jul-2014. .
-\bibitem {9} W. Z.-M.-L. I. for the S. S. Person, “Geotagged Twitter posts from the United States: A tweet collection to investigate representativeness,” Jan. 2016.
-\bibitem {10} C. J. Hutto, VADER Sentiment Analysis. VADER (Valence Aware Dictionary and sEntiment Reasoner) is a lexicon and rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social .. 2019.
-\bibitem {11} X. Huang, A. An, and N. Cercone, “Comparison of Interestingness Functions for Learning Web Usage Patterns,” in Proceedings of the Eleventh International Conference on Information and Knowledge Management, New York, NY, USA, 2002, pp. 617–620.
-\bibitem {} W. Wang, Lu Chen, K. Thirunarayan, and Amit P. Sheth, Harnessing Twitter "Big Data" for Automatic Emotion Identifcation, in Proc. of the IEEE 2012 International Conference on Privacy, Security, Risk and Trust and 2012 International Conference on Social Computing.
-\bibitem {} R. F. Dos Santos, S. Shah, F. Chen, A. Boedi-hardjo, P. Butler, C.T. Lu and N. Ramakrishnan, "Spatiotemporal storytelling on twitter", Virginia Tech Computer Science Technical Report, 2015, [online] Available: http://vtechworks.lib.vt.edu/handle/10919/24701.
-[20] D. Kumar, N. Ramakrishnan, R. F. Helm and M. Potts, Algorithm for storytelling, in IEEE Transactions on Knowledge and Data Engineering, 2008, Volume 20 Issue
-6, pp. 736-751.
-\bibitem {} N. Ramakrishnan, D. Kumar, B. Mishra, M. Potts and R. R. Helm, Turning CARTwheels: an alternating algorithm for mining redescriptions, in Knowledge Discovery and Data Mining, 2004, pp. 266-275.
-\bibitem {} L. D. Vocht, C. Beecks, R. Verborgh, T. Seidl, E. Mannens and Rik Van De Walle, Improving Semantic Relatedness in Paths for Storytelling with Linked Data on the Web, in Revised Selected Papers of the ESWC 2015 Satellite Events on The Semantic Web: ESWC 2015 Satellite Events, May 31-June 04, 2015.
-\bibitem {} Z. Chen, X. Zhang, A. P. Boedihardjo, J. Dai, Chang-Tien Lu, Multimodal storytelling via generative adversarial imitation learning, in Proceedings of the 26th International Joint Conference on Artifcial Intelligence, August 19-25, 2017, Melbourne, Australia.
-\bibitem {} R. D. Santos, S. Shah, F. Chen, A. Boedihardjo, Chang-Tien Lu, N. Ramakrishnan, Forecasting location-based events with spatio-temporal storytelling, in Proceedings of the 7th ACM SIGSPATIAL International Workshop on Location-Based Social Networks, pp. 13-22, November 04-04, 2014, Dallas/Fort Worth, Texas.
-\bibitem {} Jayant Madhavan, Sreeram Balakrishnan, Kathryn Brisbin, Hector Gonzalez, Nitin Gupta,Alon Halevy, Karen Jacqmin-Adams, Heidi Lam, Anno Langen, Hongrae Lee,Rod McChesney, Rebecca Shapley, Warren Shen, “Big Data Storytelling through Interactive Maps”
-\bibitem {} M. Shahriar Hossain1, Patrick Butler1, Arnold P. Boedihardjo2, Naren Ramakrishnan, Storytelling in Entity Networks to Support Intelligence Analysts, KDD '12 Proceedings of the 18th ACM SIGKDD international conference on Knowledge discovery and data mining, Pages 1375-1383 ,Beijing, China , August 12 - 16, 2012
-\bibitem {} Zhiqian Chen , Xuchao Zhang , Arnold P. Boedihardjo , Jing Dai , Chang-Tien Lu, Multimodal storytelling via generative adversarial imitation learning, Proceedings of the 26th International Joint Conference on Artificial Intelligence, August 19-25, 2017, Melbourne, Australia 
-\bibitem {} Raimundo F. Dos Santos, Jr. , Arnold Boedihardjo , Sumit Shah , Feng Chen , Chang-Tien Lu , Naren Ramakrishnan, The big data of violent events: algorithms for association analysis using spatio-temporal storytelling, Geoinformatica, v.20 n.4, p.879-921, October 2016
-\bibitem {} Deept Kumar, Naren Ramakrishnan, Richard F. Helm, and Malcolm Potts. 2008. Algorithms for Storytelling. IEEE TKDE20, 6 (2 2008), 736–751.DOI:http://dx.doi.org/10.1145/1188913.1188915
-\bibitem {} “GRACE Tellus Data,” GRACE Tellus. [Online]. Available: https://grace.jpl.nasa.gov/data/get-data. [Accessed: 26-Jul-2019].
-\bibitem {} “SARAL - eoPortal Directory - Satellite Missions.” [Online]. Available: https://directory.eoportal.org/web/eoportal/satellite-missions/s/saral. [Accessed: 26-Jul-2019].
-\bibitem {} “Top 5 sources of big data | Artificial Intelligence | Data Science |,” 26-Nov-2017. [Online]. Available: https://www.allerin.com/blog/top-5-sources-of-big-data. [Accessed: 26-Jul-2019].
-\bibitem {} J. Thatcher, “Big Data, Big Questions| Living on Fumes: Digital Footprints, Data Fumes, and the Limitations of Spatial Big Data,” International Journal of Communication, vol. 8, no. 0, p. 19, Jun. 2014.
-\bibitem {} “Livehoods.” [Online]. Available: http://livehoods.org/research. [Accessed: 27-Jul-2019].
-\bibitem {} “Shapefiles of drought intensity and impact for the North American Drought Portal.” [Online]. Available: https://www1.ncdc.noaa.gov/pub/data/nidis/shapefiles/. [Accessed: 01-Aug-2019].
-
+\bibitem {1} X. Huang, A. An, and N. Cercone, “Comparison of Interestingness Functions for Learning Web Usage Patterns,” in Proceedings of the Eleventh International Conference on Information and Knowledge Management, New York, NY, USA, 2002, pp. 617–620.
 
 \end{thebibliography}
 \end{document}
